@@ -4,7 +4,8 @@
 
 CC = g++
 CC_FLAGS = -g -Wall -std=c++11 -ggdb
-CC_OBJ_FLAGS = -c
+COMPILE_OBJ = $(CC) $(CC_FLAGS) -c
+COMPILE_EXE = $(CC) $(CC_FLAGS)
 OUT = obj
 CREATE_DIR = mkdir -p
 DELETE_FILE = rm -f
@@ -14,16 +15,16 @@ $(shell $(CREATE_DIR) $(OUT))
 all: helloworld.exe tests.exe
 
 helloworld.exe: $(OUT)/date.o $(OUT)/math.o
-	$(CC) $(CC_FLAGS) helloworld.cpp $(OUT)/date.o $(OUT)/math.o -o helloworld.exe
+	$(COMPILE_EXE) helloworld.cpp $(OUT)/date.o $(OUT)/math.o -o helloworld.exe
 
 tests.exe: tests.cpp $(OUT)/date.o $(OUT)/math.o
-	$(CC) $(CC_FLAGS) tests.cpp $(OUT)/date.o $(OUT)/math.o -o tests.exe
+	$(COMPILE_EXE) tests.cpp $(OUT)/date.o $(OUT)/math.o -o tests.exe
 
 $(OUT)/date.o: date.h date.cpp
-	$(CC) $(CC_FLAGS) $(CC_OBJ_FLAGS) date.cpp -o $(OUT)/date.o
+	$(COMPILE_OBJ) date.cpp -o $(OUT)/date.o
 
 $(OUT)/math.o: math.h math.cpp
-	$(CC) $(CC_FLAGS) $(CC_OBJ_FLAGS) math.cpp -o $(OUT)/math.o
+	$(COMPILE_OBJ) math.cpp -o $(OUT)/math.o
 
 .PHONY:  clean
 
