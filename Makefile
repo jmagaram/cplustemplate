@@ -29,5 +29,8 @@ $(OUT)/math.o: math.h math.cpp
 
 clean:
 	$(DELETE_FILE) *.o
+	$(DELETE_FILE) *.d	
 	$(DELETE_FILE) *.exe
 	$(DELETE_FILE) $(OUT)/*.o
+	$(DELETE_FILE) $(OUT)/*.d
+	$(DELETE_FILE) $(OUT)/*.exe
