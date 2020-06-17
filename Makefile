@@ -10,12 +10,12 @@ DELETE_FILE = rm -f
 
 $(shell $(CREATE_DIR) $(OUT))
 
-all: helloworld tests
+all: helloworld.exe tests.exe
 
-helloworld: date.o math.o
+helloworld.exe: $(OUT)/date.o $(OUT)/math.o
 	$(CC) $(CC_FLAGS) helloworld.cpp $(OUT)/date.o $(OUT)/math.o -o helloworld.exe
 
-tests: tests.cpp date.o math.o
+tests.exe: tests.cpp $(OUT)/date.o $(OUT)/math.o
 	$(CC) $(CC_FLAGS) tests.cpp $(OUT)/date.o $(OUT)/math.o -o tests.exe
 
 $(OUT)/date.o: date.h date.cpp
