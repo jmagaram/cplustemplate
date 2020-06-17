@@ -1,3 +1,6 @@
+# I think it might be compiling everything every time since I can't get
+# the message saying everything is up to date.
+
 CC = g++
 CC_FLAGS = -g -Wall -std=c++11 -ggdb
 CC_OBJ_FLAGS = -c
