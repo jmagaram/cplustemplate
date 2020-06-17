@@ -7,10 +7,13 @@ DELETE_FILE = rm -f
 
 $(shell $(CREATE_DIR) $(OUT))
 
-all: helloworld
+all: helloworld tests
 
 helloworld: date.o math.o
 	$(CC) $(CC_FLAGS) helloworld.cpp $(OUT)/date.o $(OUT)/math.o -o helloworld.exe
+
+tests: tests.cpp date.o math.o
+	$(CC) $(CC_FLAGS) tests.cpp $(OUT)/date.o $(OUT)/math.o -o tests.exe
 
 date.o: date.h date.cpp
 	$(CC) $(CC_FLAGS) $(CC_OBJ_FLAGS) date.cpp -o $(OUT)/date.o
