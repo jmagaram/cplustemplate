@@ -18,10 +18,10 @@ helloworld: date.o math.o
 tests: tests.cpp date.o math.o
 	$(CC) $(CC_FLAGS) tests.cpp $(OUT)/date.o $(OUT)/math.o -o tests.exe
 
-date.o: date.h date.cpp
+$(OUT)/date.o: date.h date.cpp
 	$(CC) $(CC_FLAGS) $(CC_OBJ_FLAGS) date.cpp -o $(OUT)/date.o
 
-math.o: math.h math.cpp
+$(OUT)/math.o: math.h math.cpp
 	$(CC) $(CC_FLAGS) $(CC_OBJ_FLAGS) math.cpp -o $(OUT)/math.o
 
 .PHONY:  clean
