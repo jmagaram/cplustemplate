@@ -1,5 +1,6 @@
-# I think it might be compiling everything every time since I can't get
-# the message saying everything is up to date.
+# Some of the commands in here might be dependent on which command shell is used to
+# execute it. For example, commands that delete and create files and folders are
+# slightly different under the bash shell, PowerShell, and Windows command prompt.
 
 CC = g++
 CC_FLAGS = -g -Wall -std=c++11 -ggdb
