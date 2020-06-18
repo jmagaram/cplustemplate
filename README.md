@@ -4,6 +4,9 @@ This is a simple starter configuration for building C++ using VS Code using the 
 * Some preconfigured build tasks like clean and make all.
 * Debugging works
 * Testing framework included
+
+This is good information from Microsoft for getting [started with C++ in VS Code](https://code.visualstudio.com/docs/cpp/config-mingw).
+
 ## Make files
 The makefile was tested using the bash shell. I don't think other shells will work. So set your default command shell to bash.
 
@@ -19,6 +22,3 @@ I tried getting [Google Test](https://github.com/google/googletest) to work but 
 Check these out. They are easily accessible from the keyboard shortcut **Ctrl+Shift+B**.
 
 These are configured to work only if the default shell is bash.
-
-## Other info
-This is good information from Microsoft for getting [started with C++ in VS Code](https://code.visualstudio.com/docs/cpp/config-mingw).
