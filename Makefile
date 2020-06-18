@@ -1,6 +1,8 @@
 # Some of the commands in here might be dependent on which command shell is used to
 # execute it. For example, commands that delete and create files and folders are
 # slightly different under the bash shell, PowerShell, and Windows command prompt.
+# Also path separators are different in bash than in PowerShell and the Windows
+# command prompt.
 
 CC = g++
 CC_FLAGS = -g -Wall -std=c++11 -ggdb
