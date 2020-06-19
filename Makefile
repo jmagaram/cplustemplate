@@ -21,16 +21,16 @@ COMPILE_GTEST_EXE = $(CC) -std=c++17 -I h -pthread -ggdb -g
 
 $(shell $(CREATE_DIR) $(OUT))
 
-all: helloworld.exe tests.exe
+all: helloworld.exe tests_doctest.exe
 
 helloworld.exe: $(OUT)/date.o $(OUT)/math.o
 	$(COMPILE_EXE) helloworld.cpp $(OUT)/date.o $(OUT)/math.o -o helloworld.exe
 
-tests.exe: tests.cpp $(OUT)/date.o $(OUT)/math.o
-	$(COMPILE_EXE) tests.cpp $(OUT)/date.o $(OUT)/math.o -o tests.exe
+tests_doctest.exe: tests_doctest.cpp $(OUT)/date.o $(OUT)/math.o
+	$(COMPILE_EXE) tests_doctest.cpp $(OUT)/date.o $(OUT)/math.o -o tests_doctest.exe
 
-googletests.exe :  $(OUT)/googletests.o $(OUT)/date.o $(OUT)/math.o
-	$(COMPILE_GTEST_EXE) $(OUT)/googletests.o $(OUT)/date.o $(OUT)/math.o $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o googletests.exe
+tests_gtest.exe :  $(OUT)/tests_gtest.o $(OUT)/date.o $(OUT)/math.o
+	$(COMPILE_GTEST_EXE) $(OUT)/tests_gtest.o $(OUT)/date.o $(OUT)/math.o $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o tests_gtest.exe
 
 $(OUT)/date.o: date.h date.cpp
 	$(COMPILE_OBJ) date.cpp -o $(OUT)/date.o
@@ -38,12 +38,8 @@ $(OUT)/date.o: date.h date.cpp
 $(OUT)/math.o: math.h math.cpp
 	$(COMPILE_OBJ) math.cpp -o $(OUT)/math.o
 
-$(OUT)/googletests.o : googletests.cpp
-	$(COMPILE_GTEST_OBJ) googletests.cpp -o $(OUT)/googletests.o
-
-
-
-
+$(OUT)/tests_gtest.o : tests_gtest.cpp
+	$(COMPILE_GTEST_OBJ) tests_gtest.cpp -o $(OUT)/tests_gtest.o
 
 .PHONY:  clean
 
