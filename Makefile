@@ -28,6 +28,25 @@ $(OUT)/date.o: date.h date.cpp
 $(OUT)/math.o: math.h math.cpp
 	$(COMPILE_OBJ) math.cpp -o $(OUT)/math.o
 
+
+# Google Test
+# Make sure include path in COMPILE_GTEST_OBJ points to the gtest include files you cloned.
+# Lots of magic here; grabbed it from the internet and don't know what all these flags do.
+
+GTEST_LIB_FOLDER = ./gtestbuild/lib
+GTEST_INCLUDES = ../googletest/googletest/include/
+GTEST_LIB = $(GTEST_LIB_FOLDER)/libgtest_main.a $(GTEST_LIB_FOLDER)/libgtest.a
+COMPILE_GTEST_OBJ = g++ -std=c++17 -Wall -I h -I $(GTEST_INCLUDES) -c
+COMPILE_GTEST_EXE = g++ -std=c++17 -I h -pthread
+
+googletests.exe :  $(OUT)/googletests.o $(OUT)/date.o $(OUT)/math.o
+	$(COMPILE_GTEST_EXE) $(OUT)/googletests.o $(OUT)/date.o $(OUT)/math.o $(GTEST_LIB) -o googletests.exe
+
+$(OUT)/googletests.o : googletests.cpp
+	$(COMPILE_GTEST_OBJ) googletests.cpp -o $(OUT)/googletests.o
+
+
+
 .PHONY:  clean
 
 clean:
