@@ -1,11 +1,12 @@
 # VS Code C++ Starter for Windows
 
-This is a simple starter configuration for building C++ using VS Code using the g++ compiler. The key features are:
+This is a simple starter configuration for building C++ using VS Code using the g++ compiler on Windows. The key features are:
 
 - Make files for compilation, with build results (.exe and .o files) in a subdirectory.
 - Some preconfigured build tasks like clean and make all.
 - Debugging works
-- Testing framework included
+- Unit testing with doctest included
+- Unit testing with GTest will work with some additional steps documented below
 
 This is good information from Microsoft for getting [started with C++ in VS Code](https://code.visualstudio.com/docs/cpp/config-mingw).
 
