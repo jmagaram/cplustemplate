@@ -23,14 +23,19 @@ Install the [C++ TestMate VS Code Extension](https://marketplace.visualstudio.co
 
 ## Testing with Google Test
 
-These steps worked for me on Windows 10. You need to build the Google Test framework and then reference it from your Makefile and code.
+You need to build the Google Test framework. Start **powershell** (didn't seem to work in Bash) and do this...
 
-1. Use git to clone [Google Test](https://github.com/google/googletest) to somewhere on your computer. I put it in the `source\repos\googletest` folder.
-1. Create a folder where you are going to build the GTest framework. I created the folder `source\repos\googletest\build`
-1. In **powershell** (bash didn't seem to work for me), cd into the above folder you created. Then type this, substituting the correct path to the root of the Google Test folder you cloned. `cmake source\repos\googletest\ -G "MinGW Makefiles"`
-1. Type `make`. This makes the library files your code will link with. I think this builds a version of the libraries that works on Windows but will not necessarily work on Linux.
-1. Your tests just need two things: (a) the GTest include files and (b) the GTest library files you just built. Make sure the paths in the Makefile properly reference the correct paths on your system to these files.
-1. Your test files must `#include "gtest\gtest.h"`. The VS Code text editor does not know how to find these files even though the Makefile does. The fix is to add the path to the GTest include files in your **c_cpp_properties.json** file.
+    cd source\repos
+    git clone https://github.com/google/googletest googletest
+    cd googletest
+    mkdir build
+    cd build
+    cmake .. -G "MinGW Makefiles"
+    make
+
+Your tests just need two things: (a) the GTest include files and (b) the GTest library files you just built. Make sure the paths in the Makefile properly reference the correct paths on your system to these files.
+
+Your test files must `#include "gtest\gtest.h"`. The VS Code text editor does not know how to find these files even though the Makefile does. The fix is to add the path to the GTest include files in your **c_cpp_properties.json** file.
 
 ## Testing with Catch2
 
