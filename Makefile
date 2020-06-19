@@ -36,8 +36,8 @@ $(OUT)/math.o: math.h math.cpp
 GTEST_LIB_FOLDER = ./gtestbuild/lib
 GTEST_INCLUDES = ../googletest/googletest/include/
 GTEST_LIB = $(GTEST_LIB_FOLDER)/libgtest_main.a $(GTEST_LIB_FOLDER)/libgtest.a
-COMPILE_GTEST_OBJ = g++ -std=c++17 -Wall -I h -I $(GTEST_INCLUDES) -c
-COMPILE_GTEST_EXE = g++ -std=c++17 -I h -pthread
+COMPILE_GTEST_OBJ = g++ -std=c++17 -Wall -I h -I $(GTEST_INCLUDES) -c -ggdb -g
+COMPILE_GTEST_EXE = g++ -std=c++17 -I h -pthread -ggdb -g
 
 googletests.exe :  $(OUT)/googletests.o $(OUT)/date.o $(OUT)/math.o
 	$(COMPILE_GTEST_EXE) $(OUT)/googletests.o $(OUT)/date.o $(OUT)/math.o $(GTEST_LIB) -o googletests.exe
