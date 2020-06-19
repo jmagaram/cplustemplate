@@ -11,6 +11,7 @@ COMPILE_EXE = $(CC) $(CC_FLAGS)
 OUT = obj
 CREATE_DIR = mkdir -p
 DELETE_FILE = rm -f
+DELETE_DIRECTORY = rmdir 
 
 # I grabbed these off the internet and they seem to work. I don't know whether or
 # if other compiler flags will work instead.
@@ -50,3 +51,7 @@ clean:
 	$(DELETE_FILE) $(OUT)/*.o
 	$(DELETE_FILE) $(OUT)/*.d
 	$(DELETE_FILE) $(OUT)/*.exe
+
+# Sometimes this directory gets created if scripts are run in powershell
+# rather than bash. Annoying.
+	$(DELETE_DIRECTORY) ./-p
