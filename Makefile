@@ -33,7 +33,7 @@ $(OUT)/math.o: math.h math.cpp
 # Make sure include path in COMPILE_GTEST_OBJ points to the gtest include files you cloned.
 # Lots of magic here; grabbed it from the internet and don't know what all these flags do.
 
-GTEST_LIB_FOLDER = ./gtestbuild/lib
+GTEST_LIB_FOLDER = ../googletest/build/lib
 GTEST_INCLUDES = ../googletest/googletest/include/
 GTEST_LIB = $(GTEST_LIB_FOLDER)/libgtest_main.a $(GTEST_LIB_FOLDER)/libgtest.a
 COMPILE_GTEST_OBJ = g++ -std=c++17 -Wall -I h -I $(GTEST_INCLUDES) -c -ggdb -g
