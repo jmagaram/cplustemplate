@@ -11,7 +11,7 @@ COMPILE_EXE = $(CC) $(CC_FLAGS)
 OUT = obj
 CREATE_DIR = mkdir -p
 DELETE_FILE = rm -f
-DELETE_DIRECTORY = rmdir 
+DELETE_DIRECTORY = rm -d -f 
 
 # I grabbed these off the internet and they seem to work. I don't know whether or
 # if other compiler flags will work instead.
