@@ -17,13 +17,17 @@ COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
 COMPILE_EXE = $(CXX) $(CXXFLAGS)
 
 ifeq ($(PLATFORM),Windows)
-	GTEST_LIB = ../googletest/build/lib
+	GTEST_LIB_PATH = ../googletest/build/lib
+	GTEST_LIB_MAIN = $(GTEST_LIB_PATH)/libgtest_main.a
+	GTEST_LIB_CORE = $(GTEST_LIB_PATH)/libgtest.a
 	GTEST_INCLUDE = ../googletest/googletest/include/
 	COMPILE_GTEST_OBJ = $(CXX) -std=c++17 -Wall -I h -I $(GTEST_INCLUDE) -c -ggdb -g
 	COMPILE_GTEST_EXE = $(CXX) -std=c++17 -I h -pthread -ggdb -g
 	EXE = .exe
 else
-	GTEST_LIB = 
+	GTEST_LIB_PATH = ../googletest/build/lib
+	GTEST_LIB_MAIN = $(GTEST_LIB_PATH)/libgtest_main.a
+	GTEST_LIB_CORE = $(GTEST_LIB_PATH)/libgtest.a
 	GTEST_INCLUDE = 
 	COMPILE_GTEST_OBJ =
 	COMPILE_GTEST_EXE =
@@ -39,7 +43,7 @@ tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
 tests_gtest$(EXE) : tests_gtest.o date.o math.o
-	$(COMPILE_GTEST_EXE) $^ $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o $@
+	$(COMPILE_GTEST_EXE) $^ $(GTEST_LIB_MAIN) $(GTEST_LIB_CORE) -o $@
 
 date.o: date.cpp date.h
 	$(COMPILE_OBJ) $< -o $@
