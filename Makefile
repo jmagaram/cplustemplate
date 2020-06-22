@@ -33,7 +33,7 @@ endif
 all: hello$(EXE) tests_doctest$(EXE)
 
 hello$(EXE): date.o math.o
-	$(COMPILE_EXE) helloworld.cpp $^ -o $@
+	$(COMPILE_EXE) hello.cpp $^ -o $@
 
 tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
