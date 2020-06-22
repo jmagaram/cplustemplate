@@ -9,7 +9,7 @@ This is a simple starter configuration for building C++ using VS Code using the 
 
 There is good info from Microsoft for getting [started with C++ in VS Code](https://code.visualstudio.com/docs/cpp/config-mingw). When I installed the g++ compiler there were some cryptic options. I chose **C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0** and this has worked out well. Based on experimentation I suspect the other options are not as reliable. I've read various web posts that the Win32 version does not have all the threading features that the posix version has. 
 
-## Make file
+## Makefile
 
 The makefile was tested using the bash shell. I don't think other shells will work. So set your default shell in VS Code to `bash`.
 
