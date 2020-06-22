@@ -12,7 +12,6 @@ CXX = g++
 CXXFLAGS = -g -Wall -std=c++11 -ggdb
 COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
 COMPILE_EXE = $(CXX) $(CXXFLAGS)
-DELETE_FILE = rm -f
 
 # I grabbed these off the internet and they seem to work. I don't know whether or
 # if other compiler flags will work instead.
@@ -44,6 +43,6 @@ tests_gtest.o : tests_gtest.cpp
 .PHONY: clean
 
 clean:
-	$(DELETE_FILE) *.o
-	$(DELETE_FILE) *.d	
-	$(DELETE_FILE) *.exe
+	$(RM) *.o
+	$(RM) *.d	
+	$(RM) *.exe
