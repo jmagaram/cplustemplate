@@ -2,7 +2,7 @@
 
 This is a simple starter configuration for building C++ using VS Code using the g++ compiler on Windows. The key features are:
 
-- Makefile for compilation with temporary build results (.o files) in an `obj` subdirectory.
+- Sample makefile
 - Unit testing with doctest works without much hassle
 - Unit testing with GTest works if you build GTest first according to steps below
 - Debugging of main program and tests works
