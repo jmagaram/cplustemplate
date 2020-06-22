@@ -11,6 +11,9 @@
 # and .exe files from the VS Code file explorer, search VS Code settings for the
 # word "exclude" and add *.o and *.exe to the list.
 
+# Some rules use automatic variables like $^ and $@ to avoid repetition.
+# https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html#Automatic-Variables
+
 # Implicit variables defined here
 # https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html#Implicit-Variables
 
@@ -32,13 +35,13 @@ COMPILE_GTEST_EXE = $(CXX) -std=c++17 -I h -pthread -ggdb -g
 all: helloworld.exe tests_doctest.exe
 
 helloworld.exe: date.o math.o
-	$(COMPILE_EXE) helloworld.cpp date.o math.o -o helloworld.exe
+	$(COMPILE_EXE) helloworld.cpp $^ -o $@
 
 tests_doctest.exe: tests_doctest.cpp date.o math.o
-	$(COMPILE_EXE) tests_doctest.cpp date.o math.o -o tests_doctest.exe
+	$(COMPILE_EXE) $^ -o $@
 
 tests_gtest.exe :  tests_gtest.o date.o math.o
-	$(COMPILE_GTEST_EXE) tests_gtest.o date.o math.o $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o tests_gtest.exe
+	$(COMPILE_GTEST_EXE) $^ $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o $@
 
 date.o: date.cpp date.h
 	$(COMPILE_OBJ) $< -o $@
