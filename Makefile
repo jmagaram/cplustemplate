@@ -12,9 +12,7 @@ CXX = g++
 CXXFLAGS = -g -Wall -std=c++11 -ggdb
 COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
 COMPILE_EXE = $(CXX) $(CXXFLAGS)
-CREATE_DIR = mkdir -p
 DELETE_FILE = rm -f
-DELETE_DIRECTORY = rm -d -f 
 
 # I grabbed these off the internet and they seem to work. I don't know whether or
 # if other compiler flags will work instead.
@@ -49,7 +47,3 @@ clean:
 	$(DELETE_FILE) *.o
 	$(DELETE_FILE) *.d	
 	$(DELETE_FILE) *.exe
-
-# Sometimes this directory gets created if scripts are accidentally run in
-# powershell rather than bash. Annoying.
-	$(DELETE_DIRECTORY) ./-p
