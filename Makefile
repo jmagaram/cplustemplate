@@ -4,10 +4,13 @@
 # Also path separators are different in bash than in PowerShell and the Windows
 # command prompt.
 
-CC = g++
-CC_FLAGS = -g -Wall -std=c++11 -ggdb
-COMPILE_OBJ = $(CC) $(CC_FLAGS) -c
-COMPILE_EXE = $(CC) $(CC_FLAGS)
+# Implicit variables defined here
+# https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html#Implicit-Variables
+
+CXX = g++
+CXXFLAGS = -g -Wall -std=c++11 -ggdb
+COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
+COMPILE_EXE = $(CXX) $(CXXFLAGS)
 OUT = obj
 CREATE_DIR = mkdir -p
 DELETE_FILE = rm -f
@@ -17,8 +20,8 @@ DELETE_DIRECTORY = rm -d -f
 # if other compiler flags will work instead.
 GTEST_LIB = ../googletest/build/lib
 GTEST_INCLUDE = ../googletest/googletest/include/
-COMPILE_GTEST_OBJ = $(CC) -std=c++17 -Wall -I h -I $(GTEST_INCLUDE) -c -ggdb -g
-COMPILE_GTEST_EXE = $(CC) -std=c++17 -I h -pthread -ggdb -g
+COMPILE_GTEST_OBJ = $(CXX) -std=c++17 -Wall -I h -I $(GTEST_INCLUDE) -c -ggdb -g
+COMPILE_GTEST_EXE = $(CXX) -std=c++17 -I h -pthread -ggdb -g
 
 $(shell $(CREATE_DIR) $(OUT))
 
