@@ -1,7 +1,7 @@
 # It is difficult to get the makefile to put .o files in a subdirectory, like
-# obj, without cluttering up the makefile and making it difficult to work with.
-# To hide .o and .exe files from the VS Code file explorer, search VS Code
-# settings for the word "exclude" and add *.o and *.exe to the list.
+# obj, without cluttering up the makefile. To hide .o and .exe files from the VS
+# Code file explorer, search VS Code settings for the word "exclude" and add *.o
+# and *.exe to the list.
 
 # This makefile is intended to be used on both Windows and Linux. It should be
 # possible to just change the PLATFORM variable and have everything else work.
@@ -15,25 +15,22 @@ COMPILE_EXE = $(CXX) $(CXXFLAGS)
 
 ifeq ($(PLATFORM),Windows)
 	GTEST_LIB_PATH = ../googletest/build/lib
-	GTEST_LIB_MAIN = $(GTEST_LIB_PATH)/libgtest_main.a
-	GTEST_LIB_CORE = $(GTEST_LIB_PATH)/libgtest.a
-	GTEST_INCLUDE = ../googletest/googletest/include/
-	COMPILE_GTEST_OBJ = $(CXX) -std=c++17 -Wall -I h -I $(GTEST_INCLUDE) -c -ggdb -g
-	COMPILE_GTEST_EXE = $(CXX) -std=c++17 -I h -pthread -ggdb -g
+	GTEST_MAIN = $(GTEST_LIB_PATH)/libgtest_main.a
+	GTEST_CORE = $(GTEST_LIB_PATH)/libgtest.a
+	GTEST_INCLUDE = -I ../googletest/googletest/include/
 	EXE = .exe
 else
-	GTEST_LIB_PATH = ../googletest/build/lib
-	GTEST_LIB_MAIN = $(GTEST_LIB_PATH)/libgtest_main.a
-	GTEST_LIB_CORE = $(GTEST_LIB_PATH)/libgtest.a
-	GTEST_INCLUDE = 
-	COMPILE_GTEST_OBJ =
-	COMPILE_GTEST_EXE =
+	GTEST_MAIN = -l gtest_main
+	GTEST_CORE = -l gtest
+	GTEST_INCLUDE = -I /usr/include/gtest/
 	EXE = 
 endif
 
 all: hello$(EXE) tests_doctest$(EXE)
 
+# ===========
 # EXECUTABLES
+# ===========
 # $@ is the name of the rule.
 # $^ is all the dependencies.
 
@@ -44,9 +41,11 @@ tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
 tests_gtest$(EXE) : tests_gtest.o date.o math.o
-	$(COMPILE_GTEST_EXE) $^ $(GTEST_LIB_MAIN) $(GTEST_LIB_CORE) -o $@
+	$(COMPILE_EXE) -pthread $(GTEST_INCLUDE) $(GTEST_MAIN) $(GTEST_CORE) $^ -o $@
 
-# OBJECT FILES 
+# ============
+# OBJECT FILES
+# ============ 
 # $< is the first dependency so put the .cpp file first.
 # $@ is the name of the rule. 
 
@@ -57,7 +56,11 @@ math.o: math.cpp math.h
 	$(COMPILE_OBJ) $< -o $@
 
 tests_gtest.o : tests_gtest.cpp
-	$(COMPILE_GTEST_OBJ) $< -o $@
+	$(COMPILE_OBJ) $(GTEST_INCLUDE) $< -o $@
+
+# ============
+# UTILITIES
+# ============ 
 
 .PHONY: clean
 
