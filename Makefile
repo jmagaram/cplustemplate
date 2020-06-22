@@ -40,14 +40,14 @@ tests_doctest.exe: tests_doctest.cpp date.o math.o
 tests_gtest.exe :  tests_gtest.o date.o math.o
 	$(COMPILE_GTEST_EXE) tests_gtest.o date.o math.o $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o tests_gtest.exe
 
-date.o: date.h date.cpp
-	$(COMPILE_OBJ) date.cpp -o date.o
+date.o: date.cpp date.h
+	$(COMPILE_OBJ) $< -o $@
 
-math.o: math.h math.cpp
-	$(COMPILE_OBJ) math.cpp -o math.o
+math.o: math.cpp math.h 
+	$(COMPILE_OBJ) $< -o $@
 
 tests_gtest.o : tests_gtest.cpp
-	$(COMPILE_GTEST_OBJ) tests_gtest.cpp -o tests_gtest.o
+	$(COMPILE_GTEST_OBJ) $< -o $@
 
 .PHONY:  clean
 
