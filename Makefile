@@ -3,9 +3,6 @@
 # To hide .o and .exe files from the VS Code file explorer, search VS Code
 # settings for the word "exclude" and add *.o and *.exe to the list.
 
-# Automatic variables like $^ and $@ avoid repetition in the makefile.
-# https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html#Automatic-Variables
-
 # This makefile is intended to be used on both Windows and Linux. It should be
 # possible to just change the PLATFORM variable and have everything else work.
 
@@ -36,6 +33,10 @@ endif
 
 all: hello$(EXE) tests_doctest$(EXE)
 
+# EXECUTABLES
+# $@ is the name of the rule.
+# $^ is all the dependencies.
+
 hello$(EXE): date.o math.o
 	$(COMPILE_EXE) hello.cpp $^ -o $@
 
@@ -44,6 +45,10 @@ tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 
 tests_gtest$(EXE) : tests_gtest.o date.o math.o
 	$(COMPILE_GTEST_EXE) $^ $(GTEST_LIB_MAIN) $(GTEST_LIB_CORE) -o $@
+
+# OBJECT FILES 
+# $< is the first dependency so put the .cpp file first.
+# $@ is the name of the rule. 
 
 date.o: date.cpp date.h
 	$(COMPILE_OBJ) $< -o $@
