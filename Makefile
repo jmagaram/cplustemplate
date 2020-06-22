@@ -1,12 +1,6 @@
-# Some of the commands in here might be dependent on which command shell is used to
-# execute it. For example, commands that delete and create files and folders are
-# slightly different under the bash shell, PowerShell, and Windows command prompt.
-# Also path separators are different in bash than in PowerShell and the Windows
-# command prompt.
-
 # It is difficult to get the makefile to put .o files in a subdirectory, like
 # obj, without cluttering up the makefile and making it difficult to work with.
-# See http://make.mad-scientist.net/papers/how-not-to-use-vpath/. So it is
+# See http://make.mad-scientist.net/papers/how-not-to-use-vpath/. It is
 # simplest to keep all the build targets in the current directory. To hide .o
 # and .exe files from the VS Code file explorer, search VS Code settings for the
 # word "exclude" and add *.o and *.exe to the list.
@@ -14,7 +8,8 @@
 # Some rules use automatic variables like $^ and $@ to avoid repetition.
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html#Automatic-Variables
 
-# Implicit variables defined here
+# Variables like CXX and CXXFLAGS are have special meaning to make.exe. so I'm using
+# them rather than defining other variables like CCOMPILER
 # https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html#Implicit-Variables
 
 CXX = g++
@@ -40,7 +35,7 @@ helloworld.exe: date.o math.o
 tests_doctest.exe: tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
-tests_gtest.exe :  tests_gtest.o date.o math.o
+tests_gtest.exe : tests_gtest.o date.o math.o
 	$(COMPILE_GTEST_EXE) $^ $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o $@
 
 date.o: date.cpp date.h
@@ -52,7 +47,7 @@ math.o: math.cpp math.h
 tests_gtest.o : tests_gtest.cpp
 	$(COMPILE_GTEST_OBJ) $< -o $@
 
-.PHONY:  clean
+.PHONY: clean
 
 clean:
 	$(DELETE_FILE) *.o
