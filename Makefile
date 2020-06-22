@@ -27,15 +27,15 @@ GTEST_INCLUDE = ../googletest/googletest/include/
 COMPILE_GTEST_OBJ = $(CXX) -std=c++17 -Wall -I h -I $(GTEST_INCLUDE) -c -ggdb -g
 COMPILE_GTEST_EXE = $(CXX) -std=c++17 -I h -pthread -ggdb -g
 
-all: helloworld.exe tests_doctest.exe
+all: hello tests_doctest
 
-helloworld.exe: date.o math.o
+hello: date.o math.o
 	$(COMPILE_EXE) helloworld.cpp $^ -o $@
 
-tests_doctest.exe: tests_doctest.cpp date.o math.o
+tests_doctest: tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
-tests_gtest.exe : tests_gtest.o date.o math.o
+tests_gtest : tests_gtest.o date.o math.o
 	$(COMPILE_GTEST_EXE) $^ $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o $@
 
 date.o: date.cpp date.h
