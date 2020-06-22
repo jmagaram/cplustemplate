@@ -8,10 +8,6 @@
 # Some rules use automatic variables like $^ and $@ to avoid repetition.
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html#Automatic-Variables
 
-# Variables like CXX and CXXFLAGS are have special meaning to make.exe. so I'm using
-# them rather than defining other variables like CCOMPILER
-# https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html#Implicit-Variables
-
 CXX = g++
 CXXFLAGS = -g -Wall -std=c++11 -ggdb
 COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
