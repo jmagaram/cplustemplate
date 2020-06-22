@@ -6,16 +6,15 @@
 # Automatic variables like $^ and $@ avoid repetition in the makefile.
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html#Automatic-Variables
 
+# This makefile is intended to be used on both Windows and Linux. It should be
+# possible to just change the PLATFORM variable and have everything else work.
+
+PLATFORM = Windows
+
 CXX = g++
 CXXFLAGS = -g -Wall -std=c++11 -ggdb
 COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
 COMPILE_EXE = $(CXX) $(CXXFLAGS)
-
-# This makefile is intended to be used on both Windows and Linux. Here is an
-# example of conditionally defining variables. It should be possible to just
-# change the PLATFORM variable and have everything else work.
-
-PLATFORM = Windows
 
 ifeq ($(PLATFORM),Windows)
 	GTEST_LIB = ../googletest/build/lib
