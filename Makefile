@@ -21,22 +21,24 @@ ifeq ($(PLATFORM),Windows)
 	GTEST_INCLUDE = ../googletest/googletest/include/
 	COMPILE_GTEST_OBJ = $(CXX) -std=c++17 -Wall -I h -I $(GTEST_INCLUDE) -c -ggdb -g
 	COMPILE_GTEST_EXE = $(CXX) -std=c++17 -I h -pthread -ggdb -g
+	EXE = .exe
 else
 	GTEST_LIB = 
 	GTEST_INCLUDE = 
 	COMPILE_GTEST_OBJ =
 	COMPILE_GTEST_EXE =
+	EXE = 
 endif
 
-all: hello tests_doctest
+all: hello$(EXE) tests_doctest$(EXE)
 
-hello: date.o math.o
+hello$(EXE): date.o math.o
 	$(COMPILE_EXE) helloworld.cpp $^ -o $@
 
-tests_doctest: tests_doctest.cpp date.o math.o
+tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
-tests_gtest : tests_gtest.o date.o math.o
+tests_gtest$(EXE) : tests_gtest.o date.o math.o
 	$(COMPILE_GTEST_EXE) $^ $(GTEST_LIB)/libgtest_main.a $(GTEST_LIB)/libgtest.a -o $@
 
 date.o: date.cpp date.h
