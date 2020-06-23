@@ -24,7 +24,7 @@ There is very helpful information from Microsoft for getting [started with C++ i
 
 1. Change your default shell in VS Code to **bash**. The makefile has been tested and works from bash but not from other shells like powershell and cmd.
 
-1. The makefile puts all build results in the same folder as the .cpp and .h files. These can clutter up your workspace when using VS Code. Configure VS Code to hide .o and .exe files from the VS Code file explorer. Search VS Code settings for the word "exclude" and add _.o and _.exe files to the list.
+1. The makefile puts all build results in the same folder as the .cpp and .h files. These can clutter up your workspace when using VS Code. Configure VS Code to hide .o and .exe files from the VS Code file explorer. Search VS Code settings for the word "exclude" and add \*.o and \*.exe files to the list.
 
 ## Using this template
 
