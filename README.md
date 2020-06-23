@@ -75,7 +75,7 @@ You need to build the Google Test framework. Start **powershell** (didn't seem t
 
 Your tests just need two things: (a) the GTest include files and (b) the GTest library files you just built. Make sure the paths in the Makefile properly reference the correct paths on your system to these files.
 
-Your test files must `#include "gtest\gtest.h"`. The VS Code text editor does not know how to find these files even though the Makefile does. The fix is to add the path to the GTest include files in your **c_cpp_properties.json** file. Read more information on [configuring C/C++](https://code.visualstudio.com/docs/cpp/config-mingw#_cc-configurations)
+Your test files must `#include "gtest/gtest.h"`. The VS Code text editor does not know how to find these files even though the Makefile does. The fix is to add the path to the GTest include files in your **c_cpp_properties.json** file. Read more information on [configuring C/C++](https://code.visualstudio.com/docs/cpp/config-mingw#_cc-configurations)
 
 Install the [C++ TestMate VS Code Extension](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter) to easily find and run tests.
 
