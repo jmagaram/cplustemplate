@@ -122,24 +122,4 @@ The makefile included with this template does NOT include tests_gtest.exe in the
 
 When switching between Windows and Linux, some configuration information might be different, such as the location of various .h files and the location of the Google Test framework. The makefile in this template has some conditional logic so you can change one variable - PLATFORM - and it should them build properly.
 
-About **file path separators**: In the bash shell file paths are separated by the forward slash character. In powershell and the Windows cmd shell file paths are separated by the backward slash character. So paths that work in Windows may not work in Linux and paths specified in one shell may not work in another. I have found that using paths with the forward slash in #include statements and in the makefile seem to work in both platforms.
-
-## Other things to be aware of
-
-The VS Code build and debug tasks are configured through the tasks.json and launch.json files. Below is an example task that runs "make all". The "cwd" setting defines the current working directory as \${workspaceFolder} and this is where the "make all" command is found and executed. The workspace folder is the root folder of your VS workspace. But if the makefile you are working with is stored in a subdirectory this task will fail to find it. So it is important to make sure the paths in the tasks.json and launch.json are correct according to how your project folders are organized. Read the [VS Code Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference) to learn about the special variables you can use in these files to configure paths and file names.
-
-    "tasks": [
-        {
-          "type": "shell",
-          "label": "Make All",
-          "command": "make all",
-          "args": [],
-          "options": {
-            "cwd": "${workspaceFolder}"
-          },
-          "problemMatcher": ["$gcc"],
-          "group": { "kind": "build", "isDefault": true }
-        },
-        ...
-
-If you have many different project folders underneath your root workspace folder, it might be simplest to put the .vscode folder at the root. Then create tasks dedicated to each specific project, like "make all project A" and "make all project B" and set the default to whatever project you are working on. You could also hardwire specifc run/launch configurations like "debug project A". Another alternative is to define generic tasks like "make all" but set the "cwd" to "\${cwd}" and then configure the Terminal's current working directory to whatever folder you are focusing on; search Settings for "terminal cwd" to change it. VS Code provides lots of flexibility so you should be able to set it up for how you like to work.
+In the bash shell file paths are separated by the forward slash character. In powershell and the Windows cmd shell file paths are separated by the backward slash character. So paths that work in Windows may not work in Linux and paths specified in one shell may not work in another. I have found that using paths with the forward slash in #include statements and in the makefile seem to work in both platforms.
