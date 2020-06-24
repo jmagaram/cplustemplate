@@ -35,7 +35,7 @@ tests: tests_doctest$(EXE) tests_gtest$(EXE)
 # $@ is the name of the rule.
 # $^ is all the dependencies.
 
-hello$(EXE): date.o math.o
+hello$(EXE): hello.cpp date.o math.o
 	$(COMPILE_EXE) hello.cpp $^ -o $@
 
 tests_doctest$(EXE): tests_doctest.cpp date.o math.o
