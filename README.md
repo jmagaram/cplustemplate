@@ -51,6 +51,22 @@ To debug...
 
 4. Click the Run button to start debugging.
 
+**Note:** The build and debug tasks are configured through the tasks.json and launch.json files. Below is a task defined that runs "make all". The "cwd" setting defines the current working directory as ${workspaceFolder} and this is where the "make all" command is found and executed. The Workspace Folder is the root folder of your VS workspace. But if the makefile you are working with is stored in a subdirectory this task will fail to find it. So it is important to make sure the paths in the tasks.json and launch.json are correct according to how your project folders are organized. Read the [VS Code Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference) to learn about the special variables you can use in these files to configure paths and file names. If you have many different project folders underneath your root workspace folder, you can create tasks dedicated to each specific project, like "make all project A" and "make all project B", and set the default to whatever you are working on. Another alternative is to use generic tasks like "make all" but set the "cwd" to "${cwd}" and then configure the Terminal's current working directory to whatever folder you are focusing on; search Settings for "terminal cwd" to change it.
+
+    "tasks": [
+        {
+          "type": "shell",
+          "label": "Make All",
+          "command": "make all",
+          "args": [],
+          "options": {
+            "cwd": "${workspaceFolder}"
+          },
+          "problemMatcher": ["$gcc"],
+          "group": { "kind": "build", "isDefault": true }
+        },
+        ...
+
 ## Makefile info
 
 When switching between Windows and Linux, some configuration information might be different, such as the location of various .h files and the location of the Google Test framework. The makefile in this template has some conditional logic so you can change one variable - PLATFORM - and it should them build properly.
