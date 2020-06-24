@@ -27,7 +27,7 @@
       "type": "shell",
       "label": "Make .o (for active file)",
       "command": "make",
-      "args": ["obj/${fileBasenameNoExtension}.o"],
+      "args": ["${fileBasenameNoExtension}.o"],
       "options": {
         "cwd": "${workspaceFolder}"
       },
