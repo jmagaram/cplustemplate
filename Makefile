@@ -1,8 +1,3 @@
-# It is difficult to get the makefile to put .o files in a subdirectory, like
-# obj, without cluttering up the makefile. To hide .o and .exe files from the VS
-# Code file explorer, search VS Code settings for the word "exclude" and add *.o
-# and *.exe to the list.
-
 # This makefile is intended to be used on both Windows and Linux. It should be
 # possible to just change the PLATFORM variable and have everything else work.
 
