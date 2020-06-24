@@ -14,6 +14,17 @@
     },
     {
       "type": "shell",
+      "label": "Make Hello",
+      "command": "make hello.exe",
+      "args": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "type": "shell",
       "label": "Make Clean",
       "command": "make",
       "args": ["clean"],
