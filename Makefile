@@ -36,7 +36,8 @@ tests: tests_doctest$(EXE) tests_gtest$(EXE)
 # $^ is all the dependencies.
 
 hello$(EXE): hello.cpp date.o math.o
-	$(COMPILE_EXE) hello.cpp $^ -o $@
+	$(COMPILE_EXE) $^ -o $@
+
 
 tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
