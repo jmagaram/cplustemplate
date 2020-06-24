@@ -24,6 +24,69 @@
         }
       ],
       "preLaunchTask": "Make .exe (for active file)"
+    },
+    {
+      "name": "Run hello.exe",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/hello.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Make All"
+    },
+    {
+      "name": "Run tests_doctest.exe",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/tests_doctest.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Make All"
+    },
+    {
+      "name": "Run tests_gtest.exe",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/tests_gtest.exe",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb.exe",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Make All" // make sure tests_gtest.exe is included in makefile
     }
   ]
 }

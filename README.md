@@ -5,11 +5,11 @@ This is a starter configuration for building C++ using the GNU g++ compiler in V
 - A makefile and environment that can work in both Windows and Linux with just a few edits to switch platforms. This makes it easy to do most development work in VS Code on Windows, push it to Github, and then resume or check that work from within Linux.
 - Unit testing with [doctest](https://github.com/onqtam/doctest/blob/master/doc/markdown/readme.md#reference) and [GTest](https://github.com/google/googletest). This template includes a few basic tests for each testing framework so you can see how to get started with it. There are instructions below for using a visual test explorer.
 
-## Getting started 
+## Getting started
 
 There is very helpful information from Microsoft for [getting started with C++ in VS Code](https://code.visualstudio.com/docs/cpp/config-mingw). Follow those instructions to install the GNU g++ compiler and get the basics working within VS Code.
 
-**Note:** When I installed the g++ compiler there were some cryptic options. I chose the **posix** and **x86_64** options. I installed it in  **C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0**. These options worked out well. Based on experimentation I suspect the **win32** threading option is not as reliable.
+**Note:** When I installed the g++ compiler there were some cryptic options. I chose the **posix** and **x86_64** options. I installed it in **C:\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0**. These options worked out well. Based on experimentation I suspect the **win32** threading option is not as reliable.
 
 ## Install the make.exe utility
 
@@ -60,7 +60,7 @@ Open the **hello.cpp** file and click to the left of one of the lines to set a b
 
 Open the Run section of VS Code - **Ctrl+Shift+D**. Click the green arrow. The debugger should stop at the breakpoint. Stop the debugger.
 
-You'll notice at the top near the green arrow it says "Make and debug (active file)". That is the name of a configuration defined in the **launch.json** file. If you look at that configuration you'll see the **preLaunchTask** is "Make .exe (for active file)" which is the name of a task defined in tasks.json, and that task builds an .exe for the active file using the make utility. Hopefully this can help you understand the relationship between tasks.json and launch.json. 
+You'll notice at the top near the green arrow it says "Make and debug (active file)". That is the name of a configuration defined in the **launch.json** file. If you look at that configuration you'll see the **preLaunchTask** is "Make .exe (for active file)" which is the name of a task defined in tasks.json, and that task builds an .exe for the active file using the make utility. Hopefully this can help you understand the relationship between tasks.json and launch.json.
 
 You can create additional debug configurations hardwired to a particular .exe you want to build and debug, and these can be launched regardless of which particular .cpp file you have open.
 
@@ -72,7 +72,7 @@ You can create additional debug configurations hardwired to a particular .exe yo
     ./tests_doctest.exe
 
 VS Code has many extensions. To see what extensions are installed and to install new ones, press **Ctrl+Shift+X**.
-To make testing easier, install the [C++ TestMate VS Code Extension](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter).  Also, if it is not already installed, install the [Test Explorer UI](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer).
+To make testing easier, install the [C++ TestMate VS Code Extension](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter). Also, if it is not already installed, install the [Test Explorer UI](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer).
 
 After the test explorer has been installed you should see a little lab beaker icon on the left side of VS Code near the other explorers. Click on it to open the Test Explorer. If you don't see any tests in the list you may need to configure the TestMate extension to know how to find your tests. In VS Code Settings search for "testmate path". I changed it to...
 
@@ -84,7 +84,7 @@ The template includes the **doctest.h** file which was up-to-date around June 20
 
 One way to debug your tests is to open the file with the tests, like tests_doctest.cpp, set a breakpoint, and then run it, just like you debugged the hello.cpp program.
 
-You can also debug tests from within the Test Explorer. You should be able to click on a test and click the ladybug icon. However I was only able to get this to work if the tests_doctest.cpp file was already open. I'm pretty sure there is a way to make this work more easily by changing the Config Template in the TestMate settings. [debug.configTemplate](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter) and [this](https://github.com/matepek/vscode-catch2-test-adapter/blob/master/documents/configuration/debug.configTemplate.md)  
+You can also debug tests from within the Test Explorer. You should be able to click on a test and click the ladybug icon. However I was only able to get this to work if the tests_doctest.cpp file was already open. I'm pretty sure there is a way to make this work more easily by changing the Config Template in the TestMate settings. [debug.configTemplate](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter) and [this](https://github.com/matepek/vscode-catch2-test-adapter/blob/master/documents/configuration/debug.configTemplate.md)
 
 ## Using testing with Google Test
 
@@ -103,7 +103,7 @@ Start a new terminal by typing **Ctrl+Shift+`**. Then type this...
 
 Your unit tests just need two things to work with GTest: (a) the GTest include files and (b) the GTest object files you just built. Open the Makefile and make sure the **GTEST_LIB_PATH** and **GTEST_INCLUDE** paths are correct based on where your project file is and where you installed and built Google test.
 
-Open the **tests_gtest.cpp** file to see what unit tests with this framework look like. 
+Open the **tests_gtest.cpp** file to see what unit tests with this framework look like.
 
 You may see an error on the line **#include "gtest/gtest.h"**. VS Code doesn't know where to find the Google includes files, even though the makefile does. The fix is to add the path to the GTest include files in your **c_cpp_properties.json** file. Read more information on [configuring C/C++](https://code.visualstudio.com/docs/cpp/config-mingw#_cc-configurations)
 
@@ -116,6 +116,8 @@ Try to build and run the tests. In a terminal, type this...
 
 You should be able to see and run these tests from the Test Explorer, just like you did with Doctest. You may need to click the reload/refresh button at the top of the Test Explorer first.
 
+The makefile included with this template does NOT include tests_gtest.exe in the make all by default.
+
 ## Switching between Windows and Linux
 
 When switching between Windows and Linux, some configuration information might be different, such as the location of various .h files and the location of the Google Test framework. The makefile in this template has some conditional logic so you can change one variable - PLATFORM - and it should them build properly.
@@ -124,7 +126,7 @@ About **file path separators**: In the bash shell file paths are separated by th
 
 ## Other things to be aware of
 
-The VS Code build and debug tasks are configured through the tasks.json and launch.json files. Below is an example task that runs "make all". The "cwd" setting defines the current working directory as ${workspaceFolder} and this is where the "make all" command is found and executed. The workspace folder is the root folder of your VS workspace. But if the makefile you are working with is stored in a subdirectory this task will fail to find it. So it is important to make sure the paths in the tasks.json and launch.json are correct according to how your project folders are organized. Read the [VS Code Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference) to learn about the special variables you can use in these files to configure paths and file names.
+The VS Code build and debug tasks are configured through the tasks.json and launch.json files. Below is an example task that runs "make all". The "cwd" setting defines the current working directory as \${workspaceFolder} and this is where the "make all" command is found and executed. The workspace folder is the root folder of your VS workspace. But if the makefile you are working with is stored in a subdirectory this task will fail to find it. So it is important to make sure the paths in the tasks.json and launch.json are correct according to how your project folders are organized. Read the [VS Code Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference) to learn about the special variables you can use in these files to configure paths and file names.
 
     "tasks": [
         {
@@ -140,4 +142,4 @@ The VS Code build and debug tasks are configured through the tasks.json and laun
         },
         ...
 
-If you have many different project folders underneath your root workspace folder, it might be simplest to put the .vscode folder at the root. Then create tasks dedicated to each specific project, like "make all project A" and "make all project B" and set the default to whatever project you are working on. You could also hardwire specifc run/launch configurations like "debug project A". Another alternative is to define generic tasks like "make all" but set the "cwd" to "${cwd}" and then configure the Terminal's current working directory to whatever folder you are focusing on; search Settings for "terminal cwd" to change it. VS Code provides lots of flexibility so you should be able to set it up for how you like to work.
+If you have many different project folders underneath your root workspace folder, it might be simplest to put the .vscode folder at the root. Then create tasks dedicated to each specific project, like "make all project A" and "make all project B" and set the default to whatever project you are working on. You could also hardwire specifc run/launch configurations like "debug project A". Another alternative is to define generic tasks like "make all" but set the "cwd" to "\${cwd}" and then configure the Terminal's current working directory to whatever folder you are focusing on; search Settings for "terminal cwd" to change it. VS Code provides lots of flexibility so you should be able to set it up for how you like to work.
