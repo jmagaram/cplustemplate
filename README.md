@@ -59,7 +59,7 @@ When switching between Windows and Linux, some configuration information might b
 
 [Doctest](https://github.com/onqtam/doctest/blob/master/doc/markdown/readme.md#reference) is super simple to work with. Just include a single .h file. You might want to periodically check to see if the .h file in the project has been updated to get new doctest features and bug fixes.
 
-Install the [C++ TestMate VS Code Extension](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter) to easily find and run tests.
+Install the [C++ TestMate VS Code Extension](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter) to easily find and run tests. Also, if it is not already installed, install the Test Explorer UI extension.
 
 **Important**: If the TestMate extension does not find your tests make sure the search path is correct. In VS Code Settings search for "testmate path" and set it to the name of your test executable.
 
@@ -79,7 +79,7 @@ Your tests just need two things: (a) the GTest include files and (b) the GTest l
 
 Your test files must `#include "gtest/gtest.h"`. The VS Code text editor does not know how to find these files even though the Makefile does. The fix is to add the path to the GTest include files in your **c_cpp_properties.json** file. Read more information on [configuring C/C++](https://code.visualstudio.com/docs/cpp/config-mingw#_cc-configurations)
 
-Install the [C++ TestMate VS Code Extension](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter) to easily find and run tests.
+Install the [C++ TestMate VS Code Extension](https://marketplace.visualstudio.com/items?itemName=matepek.vscode-catch2-test-adapter) to easily find and run tests. Also, if it is not already installed, install the Test Explorer UI extension.
 
 **Important**: If the TestMate extension does not find your tests make sure the search path is correct. In VS Code Settings search for "testmate path" and set it to the name of your test executable.
 
