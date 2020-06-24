@@ -60,7 +60,7 @@
       "type": "shell",
       "label": "g++.exe (active file)",
       "command": "g++.exe",
-      "args": ["-g", "${fileBasename}", "-o", "obj/${fileBasenameNoExtension}.exe"],
+      "args": ["-g", "${fileBasename}", "-o", "${fileBasenameNoExtension}.exe"],
       "options": {
         "cwd": "${workspaceFolder}"
       },
