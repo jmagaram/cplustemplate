@@ -23,9 +23,6 @@ else
 	EXE = 
 endif
 
-COMPILE_GTEST_EXE = $(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE) $(GTEST_MAIN) $(GTEST_CORE)
-COMPILE_GTEST_OBJ = $(COMPILE_OBJ) $(GTEST_FLAGS) $(GTEST_INCLUDE)
-
 all: hello$(EXE) tests_doctest$(EXE)
 tests: tests_doctest$(EXE) tests_gtest$(EXE)
 
@@ -38,12 +35,11 @@ tests: tests_doctest$(EXE) tests_gtest$(EXE)
 hello$(EXE): hello.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
-
 tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
 tests_gtest$(EXE) : tests_gtest.o date.o math.o
-	$(COMPILE_GTEST_EXE) $^ -o $@
+	$(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE) $^ $(GTEST_MAIN) $(GTEST_CORE) -o $@
 
 # ============
 # OBJECT FILES
@@ -58,7 +54,7 @@ math.o: math.cpp math.h
 	$(COMPILE_OBJ) $< -o $@
 
 tests_gtest.o : tests_gtest.cpp
-	$(COMPILE_GTEST_OBJ) $< -o $@
+	$(COMPILE_OBJ) $(GTEST_FLAGS) $(GTEST_INCLUDE) $< -o $@
 
 # ============
 # UTILITIES
@@ -70,3 +66,5 @@ clean:
 	$(RM) *.o
 	$(RM) *.d	
 	$(RM) *.exe
+	$(RM) *.ilk
+	$(RM) *.obj
