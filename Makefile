@@ -23,16 +23,16 @@ else
 	EXE = 
 endif
 
-# Although these macros seem to work I did an experiment trying to use GTest with 
-# my own supplied main() and the Microsoft C++ compiler. If the GTest libraries were
-# listed before my own, I received link errors. But if I put the GTest libraries
-# after my own, it worked. So if you start having trouble linking with GTest consider
-# moving your own libraries after GTest and see if that fixes the problem.
-COMPILE_GTEST_EXE = $(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE) $(GTEST_MAIN) $(GTEST_CORE)
+# When compiling and linking tests using GTest when you supply a main(),
+# the GTest libraries must be listed after your own dependencies or else
+# link errors occur. So these macros do not include the actual GTest libraries
+# and should instead be included below in your recipes in the proper order,
+# following the $^
+COMPILE_GTEST_EXE = $(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 COMPILE_GTEST_OBJ = $(COMPILE_OBJ) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 
 all: hello$(EXE) tests_doctest$(EXE)
-tests: tests_doctest$(EXE) tests_gtest$(EXE)
+tests: tests_doctest$(EXE) tests_gtest$(EXE) tests_gtest_main$(EXE)
 
 # ===========
 # EXECUTABLES
@@ -47,7 +47,10 @@ tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
 tests_gtest$(EXE) : tests_gtest.o date.o math.o
-	$(COMPILE_GTEST_EXE) $^ -o $@
+	$(COMPILE_GTEST_EXE)  $^ $(GTEST_CORE) $(GTEST_MAIN) -o $@
+
+tests_gtest_main$(EXE) : tests_gtest_main.o date.o math.o
+	$(COMPILE_GTEST_EXE)  $^ $(GTEST_CORE) -o $@
 
 # ============
 # OBJECT FILES
@@ -62,6 +65,9 @@ math.o: math.cpp math.h
 	$(COMPILE_OBJ) $< -o $@
 
 tests_gtest.o : tests_gtest.cpp
+	$(COMPILE_GTEST_OBJ) $< -o $@
+
+tests_gtest_main.o : tests_gtest_main.cpp
 	$(COMPILE_GTEST_OBJ) $< -o $@
 
 # ============
