@@ -4,24 +4,13 @@
     {
       "type": "shell",
       "label": "Make All",
-      "command": "make all",
-      "args": [],
+      "command": "make",
+      "args": ["all"],
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${cwd}"
       },
       "problemMatcher": ["$gcc"],
       "group": { "kind": "build", "isDefault": true }
-    },
-    {
-      "type": "shell",
-      "label": "Make Hello",
-      "command": "make hello.exe",
-      "args": [],
-      "options": {
-        "cwd": "${workspaceFolder}"
-      },
-      "problemMatcher": ["$gcc"],
-      "group": "build"
     },
     {
       "type": "shell",
@@ -29,32 +18,43 @@
       "command": "make",
       "args": ["clean"],
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${cwd}"
       },
       "problemMatcher": ["$gcc"],
       "group": "build"
     },
     {
       "type": "shell",
-      "label": "Make .o (for active file)",
+      "label": "Make .o (active file)",
       "command": "make",
       "args": ["${fileBasenameNoExtension}.o"],
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${cwd}"
       },
       "problemMatcher": ["$gcc"],
       "group": "build"
     },
     {
       "type": "shell",
-      "label": "Make .exe (for active file)",
+      "label": "Make .exe (active file)",
       "command": "make",
       "args": ["${fileBasenameNoExtension}.exe"],
       "options": {
-        "cwd": "${workspaceFolder}"
+        "cwd": "${cwd}"
       },
       "problemMatcher": ["$gcc"],
       "group": "build"
+    },
+    {
+      "type": "shell",
+      "label": "Make Hello",
+      "command": "make",
+      "args": ["hello.exe"],
+      "problemMatcher": ["$gcc"],
+      "group": "build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
     },
     {
       "type": "shell",
@@ -69,9 +69,19 @@
     },
     {
       "type": "shell",
-      "label": "g++.exe hello.exe",
-      "command": "g++ -g -Wall -std=c++11 -ggdb date.cpp math.cpp hello.cpp -o hello.exe",
-      "args": [],
+      "label": "g++.exe (hello.exe)",
+      "command": "g++",
+      "args": [
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-ggdb",
+        "date.cpp",
+        "math.cpp",
+        "hello.cpp",
+        "-o",
+        "hello.exe"
+      ],
       "options": {
         "cwd": "${workspaceFolder}"
       },
