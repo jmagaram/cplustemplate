@@ -21,7 +21,7 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": ["$gcc"],
-      "group": { "kind": "build", "isDefault": true }
+      "group": "build"
     },
     {
       "type": "shell",
