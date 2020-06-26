@@ -2,6 +2,15 @@
   // Use IntelliSense to learn about possible attributes.
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://code.visualstudio.com/Docs/editor/tasks
+  //
+  // Some tasks below are configured to run in the ${cwd} or current working
+  // directory. This is usually the root of your VS Code workspace, the folder
+  // you opened, also known as ${workspaceFolder}. If you have many different
+  // projects inside the same workspace and each is in its own sub-directory,
+  // and you only work on one project at a time, it is convenient to change your
+  // ${cwd} to the specific sub-directory you're working in. That way, when you
+  // open a new terminal it will be in the folder of the current project. In
+  // settings, search for "terminal cwd" for how to change it.
   "version": "2.0.0",
   "tasks": [
     {
