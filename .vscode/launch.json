@@ -26,6 +26,13 @@
       "preLaunchTask": "Make .exe (active file)"
     },
     {
+      // This is an example of how to connect the gdb debugger to a specific
+      // program. The name of the "preLaunchTask" must exactly match the name of
+      // the task in tasks.json that builds the program. Ensure the "program"
+      // and "cwd" (current working directory) paths are correct.
+      //
+      // You can create one of these configurations for each program or test
+      // suite you're working on.
       "name": "Debug hello.exe",
       "type": "cppdbg",
       "request": "launch",
@@ -51,27 +58,6 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/tests_doctest.exe",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${workspaceFolder}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb.exe",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        }
-      ],
-      "preLaunchTask": "Make All"
-    },
-    {
-      "name": "Debug tests_gtest.exe",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}/tests_gtest.exe",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
