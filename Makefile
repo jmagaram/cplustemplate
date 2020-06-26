@@ -75,6 +75,7 @@ clean:
 	$(RM) *.o
 	$(RM) *.d	
 	$(RM) *.exe
+	$(RM) hello$(EXE)
 	$(RM) tests_gtest$(EXE)
 	$(RM) tests_gtest_main$(EXE)
 	$(RM) tests_doctest$(EXE)
