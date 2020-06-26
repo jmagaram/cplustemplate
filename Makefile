@@ -1,12 +1,7 @@
-# This makefile is intended to be used on both Windows and Linux. It should be
-# possible to just change the PLATFORM variable and have everything else work.
-
 PLATFORM = Windows
 
 CXX = g++
 CXXFLAGS = -g -Wall -std=c++11 -ggdb
-COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
-COMPILE_EXE = $(CXX) $(CXXFLAGS)
 
 ifeq ($(PLATFORM),Windows)
 	GTEST_LIB_PATH = ../googletest/build/lib
@@ -23,11 +18,8 @@ else
 	EXE = 
 endif
 
-# When you use GTest on a program where you supply a main() the GTest libraries
-# must be listed after your own dependencies or else link errors occur. So the
-# macros below do not include the actual GTest libraries and should instead be
-# included in your recipes in the proper order, following the $^. See below for
-# examples.
+COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
+COMPILE_EXE = $(CXX) $(CXXFLAGS)
 COMPILE_GTEST_EXE = $(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 COMPILE_GTEST_OBJ = $(COMPILE_OBJ) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 
@@ -46,11 +38,14 @@ hello$(EXE): hello.cpp date.o math.o
 tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
+# When you use GTest with your own main() your dependencies $^ must precede the
+# GTest libraries or link errors occur.
+
 tests_gtest$(EXE) : tests_gtest.o date.o math.o
-	$(COMPILE_GTEST_EXE)  $^ $(GTEST_CORE) $(GTEST_MAIN) -o $@
+	$(COMPILE_GTEST_EXE) $^ $(GTEST_CORE) $(GTEST_MAIN) -o $@
 
 tests_gtest_main$(EXE) : tests_gtest_main.o date.o math.o
-	$(COMPILE_GTEST_EXE)  $^ $(GTEST_CORE) -o $@
+	$(COMPILE_GTEST_EXE) $^ $(GTEST_CORE) -o $@
 
 # ============
 # OBJECT FILES
