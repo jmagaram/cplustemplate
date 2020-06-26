@@ -22,14 +22,15 @@ COMPILE_EXE = $(CXX) $(CXXFLAGS)
 COMPILE_GTEST_EXE = $(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 COMPILE_GTEST_OBJ = $(COMPILE_OBJ) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 
-all: hello$(EXE) tests_doctest$(EXE)
-tests: tests_doctest$(EXE) tests_gtest$(EXE) tests_gtest_main$(EXE)
-
 # ===========
 # EXECUTABLES
 # ===========
 # $@ is the name of the rule.
 # $^ is all the dependencies.
+
+all: hello$(EXE) tests_doctest$(EXE)
+
+tests: tests_doctest$(EXE) tests_gtest$(EXE) tests_gtest_main$(EXE)
 
 hello$(EXE): hello.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
