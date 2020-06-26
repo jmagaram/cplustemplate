@@ -1,8 +1,5 @@
 PLATFORM = Windows
 
-CXX = g++
-CXXFLAGS = -g -Wall -std=c++11 -ggdb
-
 ifeq ($(PLATFORM),Windows)
 	GTEST_LIB_PATH = ../googletest/build/lib
 	GTEST_MAIN = $(GTEST_LIB_PATH)/libgtest_main.a
@@ -18,6 +15,8 @@ else
 	EXE = 
 endif
 
+CXX = g++
+CXXFLAGS = -g -Wall -std=c++11 -ggdb
 COMPILE_OBJ = $(CXX) $(CXXFLAGS) -c
 COMPILE_EXE = $(CXX) $(CXXFLAGS)
 COMPILE_GTEST_EXE = $(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE)
