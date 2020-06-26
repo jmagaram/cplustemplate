@@ -86,7 +86,7 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "Make All" // make sure tests_gtest.exe is included in makefile
+      "preLaunchTask": "Make All"
     }
   ]
 }
