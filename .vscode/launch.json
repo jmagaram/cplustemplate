@@ -23,7 +23,7 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "Make .exe (for active file)"
+      "preLaunchTask": "Make .exe (active file)"
     },
     {
       "name": "hello.exe",
