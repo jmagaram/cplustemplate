@@ -1,3 +1,8 @@
+# This makefile is designed to work on both Windows and Linux by just changing
+# the PLATFORM variable below. It has been tested using the bash shell, since
+# that shell is available on both platforms. Some commands, like removing files
+# when doing "make clean", will not work on other shells.
+
 PLATFORM = Windows
 
 ifeq ($(PLATFORM),Windows)
@@ -22,11 +27,12 @@ COMPILE_EXE = $(CXX) $(CXXFLAGS)
 COMPILE_GTEST_EXE = $(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 COMPILE_GTEST_OBJ = $(COMPILE_OBJ) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 
-# ===========
-# EXECUTABLES
-# ===========
-# $@ is the name of the rule.
-# $^ is all the dependencies.
+# =======
+# TARGETS
+# =======
+# $@ is the name of the target.
+# $^ is ALL the dependencies following the target name.
+# $< is the first dependency (so put the .cpp file first)
 
 all: hello$(EXE) tests_doctest$(EXE)
 
@@ -38,20 +44,15 @@ hello$(EXE): hello.cpp date.o math.o
 tests_doctest$(EXE): tests_doctest.cpp date.o math.o
 	$(COMPILE_EXE) $^ -o $@
 
-# When you use GTest with your own main() your dependencies $^ must precede the
-# GTest libraries or link errors occur.
+# When you use GTest with your own main(), your dependencies $^ must precede the
+# GTest libraries or link errors occur. But when GTest supplies the main() it
+# seems to work either way.
 
 tests_gtest$(EXE) : tests_gtest.o date.o math.o
 	$(COMPILE_GTEST_EXE) $^ $(GTEST_CORE) $(GTEST_MAIN) -o $@
 
 tests_gtest_main$(EXE) : tests_gtest_main.o date.o math.o
 	$(COMPILE_GTEST_EXE) $^ $(GTEST_CORE) -o $@
-
-# ============
-# OBJECT FILES
-# ============ 
-# $< is the first dependency so put the .cpp file first.
-# $@ is the name of the rule. 
 
 date.o: date.cpp date.h
 	$(COMPILE_OBJ) $< -o $@
@@ -65,9 +66,9 @@ tests_gtest.o : tests_gtest.cpp
 tests_gtest_main.o : tests_gtest_main.cpp
 	$(COMPILE_GTEST_OBJ) $< -o $@
 
-# ============
+# =========
 # UTILITIES
-# ============ 
+# =========
 
 .PHONY: clean
 
