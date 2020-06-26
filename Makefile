@@ -23,11 +23,11 @@ else
 	EXE = 
 endif
 
-# When compiling and linking tests using GTest when you supply a main(),
-# the GTest libraries must be listed after your own dependencies or else
-# link errors occur. So these macros do not include the actual GTest libraries
-# and should instead be included below in your recipes in the proper order,
-# following the $^
+# When you use GTest on a program where you supply a main() the GTest libraries
+# must be listed after your own dependencies or else link errors occur. So the
+# macros below do not include the actual GTest libraries and should instead be
+# included in your recipes in the proper order, following the $^. See below for
+# examples.
 COMPILE_GTEST_EXE = $(COMPILE_EXE) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 COMPILE_GTEST_OBJ = $(COMPILE_OBJ) $(GTEST_FLAGS) $(GTEST_INCLUDE)
 
