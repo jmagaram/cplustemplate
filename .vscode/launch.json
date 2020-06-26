@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Make and debug (active file)",
+      "name": "Debug (active file)",
       "type": "cppdbg",
       "request": "launch",
       "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
@@ -26,7 +26,7 @@
       "preLaunchTask": "Make .exe (active file)"
     },
     {
-      "name": "hello.exe",
+      "name": "Debug hello.exe",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/hello.exe",
@@ -47,7 +47,7 @@
       "preLaunchTask": "Make All"
     },
     {
-      "name": "tests_doctest.exe",
+      "name": "Debug tests_doctest.exe",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/tests_doctest.exe",
@@ -68,7 +68,7 @@
       "preLaunchTask": "Make All"
     },
     {
-      "name": "tests_gtest.exe",
+      "name": "Debug tests_gtest.exe",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/tests_gtest.exe",
