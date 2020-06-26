@@ -74,6 +74,11 @@ tests_gtest_main.o : tests_gtest_main.cpp
 clean:
 	$(RM) *.o
 	$(RM) *.d	
+ifeq ($(PLATFORM),Windows)
 	$(RM) *.exe
-	$(RM) *.ilk
-	$(RM) *.obj
+else
+	$(RM) tests_gtest
+	$(RM) tests_gtest_main
+	$(RM) tests_doctest
+	$(RM) hello
+endif
