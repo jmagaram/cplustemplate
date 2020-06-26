@@ -75,9 +75,6 @@ clean:
 	$(RM) *.o
 	$(RM) *.d	
 	$(RM) *.exe
-ifneq ($(PLATFORM),Windows)
-	$(RM) tests_gtest
-	$(RM) tests_gtest_main
-	$(RM) tests_doctest
-	$(RM) hello
-endif
+	$(RM) tests_gtest$(EXE)
+	$(RM) tests_gtest_main$(EXE)
+	$(RM) tests_doctest$(EXE)
