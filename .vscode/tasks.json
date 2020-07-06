@@ -19,9 +19,7 @@
       "options": {
         "cwd": "${fileDirname}"
       },
-      "problemMatcher": [
-        "$gcc"
-      ],
+      "problemMatcher": [],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -37,9 +35,7 @@
       "options": {
         "cwd": "${fileDirname}"
       },
-      "problemMatcher": [
-        "$gcc"
-      ],
+      "problemMatcher": [],
       "group": "build"
     },
     {
@@ -52,9 +48,7 @@
       "options": {
         "cwd": "${fileDirname}"
       },
-      "problemMatcher": [
-        "$gcc"
-      ],
+      "problemMatcher": [],
       "group": "build"
     },
     {
@@ -67,9 +61,7 @@
       "options": {
         "cwd": "${fileDirname}"
       },
-      "problemMatcher": [
-        "$gcc"
-      ],
+      "problemMatcher": [],
       "group": "build"
     },
     {
@@ -79,9 +71,7 @@
       "args": [
         "hello.exe"
       ],
-      "problemMatcher": [
-        "$gcc"
-      ],
+      "problemMatcher": [],
       "group": "build",
       "options": {
         "cwd": "${workspaceFolder}"
