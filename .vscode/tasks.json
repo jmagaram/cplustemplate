@@ -1,68 +1,87 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://code.visualstudio.com/Docs/editor/tasks
+  // Use IntelliSense to learn about possible attributes. Hover to view
+  // descriptions of existing attributes. For more information, visit:
+  // https://code.visualstudio.com/Docs/editor/tasks
   //
-  // Some tasks below are configured to run in the ${cwd} or current working
-  // directory. This is usually the root of your VS Code workspace, the folder
-  // you opened, also known as ${workspaceFolder}. If you have many different
-  // projects inside the same workspace and each is in its own sub-directory,
-  // and you only work on one project at a time, it is convenient to change your
-  // ${cwd} to the specific sub-directory you're working in. That way, when you
-  // open a new terminal it will be in the folder of the current project. In
-  // settings, search for "terminal cwd" for how to change it.
+  // Some tasks below are configured to run in the ${fileDirname}, which is the
+  // folder containing the file you are currently looking at. I attempted to use
+  // ${cwd} instead, which is the default directory configured for new
+  // terminals, but it didn't seem to work as expected.
   "version": "2.0.0",
   "tasks": [
     {
       "type": "shell",
       "label": "Make All",
       "command": "make",
-      "args": ["all"],
+      "args": [
+        "all"
+      ],
       "options": {
-        "cwd": "${cwd}"
+        "cwd": "${fileDirname}"
       },
-      "problemMatcher": ["$gcc"],
-      "group": { "kind": "build", "isDefault": true }
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     },
     {
       "type": "shell",
       "label": "Make Clean",
       "command": "make",
-      "args": ["clean"],
+      "args": [
+        "clean"
+      ],
       "options": {
-        "cwd": "${cwd}"
+        "cwd": "${fileDirname}"
       },
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "group": "build"
     },
     {
       "type": "shell",
       "label": "Make .o (active file)",
       "command": "make",
-      "args": ["${fileBasenameNoExtension}.o"],
+      "args": [
+        "${fileBasenameNoExtension}.o"
+      ],
       "options": {
-        "cwd": "${cwd}"
+        "cwd": "${fileDirname}"
       },
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "group": "build"
     },
     {
       "type": "shell",
       "label": "Make .exe (active file)",
       "command": "make",
-      "args": ["${fileBasenameNoExtension}.exe"],
+      "args": [
+        "${fileBasenameNoExtension}.exe"
+      ],
       "options": {
-        "cwd": "${cwd}"
+        "cwd": "${fileDirname}"
       },
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "group": "build"
     },
     {
       "type": "shell",
       "label": "Make Hello",
       "command": "make",
-      "args": ["hello.exe"],
-      "problemMatcher": ["$gcc"],
+      "args": [
+        "hello.exe"
+      ],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "group": "build",
       "options": {
         "cwd": "${workspaceFolder}"
@@ -80,12 +99,24 @@
       "type": "shell",
       "label": "g++ .exe (active file)",
       "command": "g++.exe",
-      "args": ["-g", "${file}", "-o", "${fileBasenameNoExtension}.exe"],
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${fileBasenameNoExtension}.exe"
+      ],
       "options": {
         "cwd": "${workspaceFolder}",
-        "shell": { "executable": "cmd.exe", "args": ["/c"] }
+        "shell": {
+          "executable": "cmd.exe",
+          "args": [
+            "/c"
+          ]
+        }
       },
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "group": "build"
     },
     {
@@ -97,12 +128,25 @@
       "type": "shell",
       "label": "g++ .o (active file)",
       "command": "g++.exe",
-      "args": ["-g", "${file}", "-c", "-o", "${fileBasenameNoExtension}.o"],
+      "args": [
+        "-g",
+        "${file}",
+        "-c",
+        "-o",
+        "${fileBasenameNoExtension}.o"
+      ],
       "options": {
         "cwd": "${workspaceFolder}",
-        "shell": { "executable": "cmd.exe", "args": ["/c"] }
+        "shell": {
+          "executable": "cmd.exe",
+          "args": [
+            "/c"
+          ]
+        }
       },
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "group": "build"
     },
     {
@@ -128,7 +172,9 @@
       "options": {
         "cwd": "${workspaceFolder}"
       },
-      "problemMatcher": ["$gcc"],
+      "problemMatcher": [
+        "$gcc"
+      ],
       "group": "build"
     }
   ]
